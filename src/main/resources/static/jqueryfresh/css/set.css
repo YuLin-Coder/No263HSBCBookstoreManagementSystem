@@ -1,0 +1,43 @@
+body{background: #F2F0F0;}
+.set-box1{width: 94%;float: left;height: 45px;line-height: 45px;background:url(../images/arrow-right.png) no-repeat 97% center #fff;background-size:5%;
+font-size: 15px;padding: 0px 3%;border-bottom: 1px solid #F4F4F4;}
+.set-text1{width: 50%;float: left;height: 35px;line-height: 35px;border:1px solid #E63E5A;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;
+color: #E63E5A;margin-left: 25%;text-align: center;margin-top: 30px;background: rgba(255,255,255,0);outline: none;}
+.set-text2{float: right;margin-right: 7%;font-size: 15px;color: #9F9F9F;}
+.mt-10{margin-top: 10px;}
+.no-arrow{background: #fff;}
+/*消息中心*/
+.news-center-box1{width: 94%;float: left;border-bottom: 1px solid #F1F1F1;padding: 15px 3%;}
+.news-center-img{width: 40px;height: 40px;float: left;margin-top: 5px;}
+.news-center-img img{width: 40px;height: 40px;float: left;}
+.news-center-box2{display: block;margin-left: 50px;height: 50px;line-height: 20px;}
+.float-100{width: 100%;float: left;}
+.news-center-text1{width: 60%;float: left;font-size: 16px;margin-top: 5px;}
+.news-center-text2{width: 40%;float: left;font-size: 12px;text-align: right;color: #646464;margin-top: 5px;}
+.news-center-text3{width: 90%;float: left;height: 20px;line-height: 18px;margin-top: 5px;font-size: 14px;color: #B8B8B8;overflow: hidden;
+text-overflow: ellipsis;white-space: nowrap;}
+.news-center-yuan{width: 7px;height: 7px;float: right;background: #FF4A54;border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;margin-top: 10px;}
+/*个人信息*/
+.set-box1.box2{height: 60px;line-height: 60px;}
+.personal-d-img1{width: 44px;height: 44px;float: left;border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;overflow: hidden;margin-top: 8px;}
+.personal-d-img1 img{width: 44px;height: 44px;float: left;}
+.name-input{width: 100%;float: left;height: 45px;line-height: 45px;border:none;outline: none;font-size: 14px;}
+/*性别*/
+input[type=radio] {float: right; position: relative;width: 22px;height: 22px;overflow: hidden;margin-top: 10px;}    
+input[type=radio]::before{content:'';position: absolute;top:0px;left:0px;width: 22px;height: 22px;background: url("../images/check3.png") no-repeat center center;
+background-size: 100%;}    
+input[type=radio]:checked::before {background: url("../images/check4.png") no-repeat;background-size: 100%;content:'';} 
+/*我的电话修改*/
+.phone-number-text1{width: 100%;float: left;font-size: 14px;text-align: center;margin-top: 20px;}
+.phone-number-text2{width: 100%;float: left;font-size: 16px;text-align: center;margin-top: 15px;}
+.phone-number-text2 i{font-size: 26px;}
+/*更换手机号*/
+.jd-aqjc-t1{width: 100%;text-align: center;margin-top: 12px;float: left;font-size: 14px;}
+.jd-aqjc-t2{width: 100%;float: left;padding: 10px 0px;font-size: 24px;font-weight: 600;text-align: center;}
+.jdaqjc-a1{width: 100%;float: left;background-color: #FFFFFF;padding: 14px 0px;}
+.jdaqjc-a1-t1{float: left;margin-left: 5%;font-size: 14px;}
+.jdaq-jc-input{width: 38%;float: left;font-size: 14px;padding-left: 10px;border:none;outline: none;}
+.jdaqjc-a1-t2{width: 33%;float: right;text-align: center;border-left: 1px solid #e1e1e1;font-size: 14px;color: #f23030;}
+/*换绑成功*/
+.phone-bg{width: 100%;height: 500px;float: left;background: url(../images/phone-bg.png) no-repeat center top;background-clip: 80%;}
+.phone-text1{width: 100%;float: left;text-align: center;margin-top: 50%;font-size: 18px;}

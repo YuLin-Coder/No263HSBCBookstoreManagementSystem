@@ -1,0 +1,310 @@
+body{background: #F7F7F7;}
+.zjzz-buylist-wear {
+	max-width: 640px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+/*头部 */
+.zjzz-buylist-top {
+	position: fixed;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	color: #333333;
+	background: #FFFFFF;
+	text-align: center;
+	border-bottom: 1px solid #F3F3F3;
+}
+.zjzz-buylist-t1,
+.zjzz-buylist-t2,
+.zjzz-buylist-t3 {
+	float: left;
+}
+.zjzz-buylist-t1,
+.zjzz-buylist-t3 {
+	width: 30%;
+	height: 45px;
+	line-height: 45px;
+	font-size: 14px;
+}
+.zjzz-buylist-t1 {
+	background: url(../images/arrow-left.png) no-repeat 10px center;
+	background-size: 20%;
+}
+.zjzz-buylist-t2 {
+	width: 40%;
+	height: 45px;
+	line-height: 45px;
+	font-size: 16px;
+}
+.zjzz-buylist-t4,
+.zjzz-buylist-t5 {
+	float: left;
+	height: 45px;
+}
+.zjzz-buylist-t4 {
+	width: 100%;
+	background: url(../images/ltt-sousuo.png) no-repeat 85% center;
+	background-size: 18%;
+}
+.zjzz-buylist-t5 {
+	width: 35%;
+	font-size: 16px;
+	color: #7F7F84;
+	text-align: right;
+	background: url(../images/more.png) no-repeat center center;
+	background-size: 45%;
+}
+.zjzz-buylist-top2 {
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	width: 100%;
+	top: 46px;
+	background: #FFFFFF;
+	height: 40px;
+	line-height: 40px;
+}
+.zjzz-buylist-tp1 {
+	position: relative;
+	float: left;
+	width: 25%;
+	font-size: 14px;
+	color: #333333;
+	text-align: center;
+}
+.zjzz-buylist-tp2 {
+	display: inline-block;
+	padding: 0 5px;
+	line-height: 40px;
+	text-align: center;
+	height: 37px;
+	color: #FF9201;
+	border-bottom: 3px solid #FF9201;
+}
+.zjzz-buylist-tp3 {
+	position: absolute;
+	top: 2px;
+	right: 3px;
+	color: #FF9201;
+	font-size: 12px;
+	width: 15px;
+	height: 15px;
+	line-height: 14px;
+	text-align: center;
+	border: 1px solid #FF9201;
+	border-radius: 50%;
+}
+/*主面板*/
+.zjzz-buylist-mid {
+	width: 100%;
+	margin-top: 86px;
+	position: relative;
+	top: 0;
+	background: #F8F3F7;
+}
+.zjzz-buylist-m1 {
+	float: left;
+	width: 100%;
+}
+/*全部*/
+.zjzz-buylist-goods1{
+	margin-top: 10px;
+}
+.zjzz-buylist-allact {
+	float: left;
+	width: 90%;
+	padding-left: 10%;
+	line-height: 40px;
+	font-size: 14px;
+	margin-top: 10px;
+	background: url(../images/gonga.png) no-repeat 3% center #FFFFFF;
+	background-size: 5%;
+}
+.zjzz-buylist-gtime {
+	float: left;
+	width: 100%;
+	font-size: 14px;
+	line-height: 35px;
+	border-bottom: 1px solid #D4D4D4;
+}
+.zjzz-buylist-gtime1 {
+	float: left;
+}
+.zjzz-buylist-gtime2 {
+	float: right;
+	color: #787878;
+}
+.zjzz-buylist-gtit1 {
+	float: left;
+	width: 67%;
+	font-size: 14px;
+	line-height: 20px;
+	margin-top: 10px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+	overflow: hidden;
+}
+.zjzz-buylist-gmoney {
+	float: right;
+	text-align: right;
+	line-height: 20px;
+	margin-top: 10px;
+}
+.zjzz-buylist-gm1,
+.zjzz-buylist-gm2 {
+	float: left;
+	width: 100%;
+	font-size: 14px;
+	height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.zjzz-buylist-gm2{
+	color: #B1B1B1;
+}
+.zjzz-buylist-det{
+	float: left;
+	width: 100%;
+	padding: 10px 0;
+	border-bottom: 1px solid #F3F3F3;
+}
+.zjzz-buylist-gm3{
+	margin: 0 10px;
+}
+.zjzz-buylist-gm4{
+	color: #FF9201;
+}
+.zjzz-buylist-goodsm{
+	float: left;
+	width: 100%;
+	text-align: right;
+	line-height: 45px;
+	font-size: 14px;
+}
+.zjzz-buylist-btn3 {
+	color: #FFFFFF;
+	background: #FF9201;
+	border: 1px solid #FF9201;
+}
+.zjzz-buylist-shm{
+	float: right;
+	width: 100%;
+	text-align: right;
+	line-height: 25px;
+	color: #ED889A;
+	font-size: 14px;
+}
+.zjzz-buylist-shm img{
+	vertical-align: middle;
+	float: none !important;
+	margin-top: -3px;
+	width: 22px !important;
+	height: 22px !important;
+}
+/*评价*/
+.zjzz-buylist-act {
+	width: 100%;
+}
+.zjzz-buylist-mt1 {
+	color: #A6A6A6;
+	font-size: 12px;
+	line-height: 40px;
+	text-align: center;
+	float: left;
+	width: 50%;
+	background: #FFFFFF;
+}
+.zjzz-buylist-mt2 {
+	display: inline-block;
+	line-height: 40px;
+	height: 37px;
+	color: #09090B;
+	padding: 0 5px;
+	border-bottom: 3px solid #09090B;
+}
+.zjzz-buylist-mt3 {
+	float: left;
+	width: 100%;
+	text-align: center;
+	line-height: 40px;
+	color: #BCB7BB;
+	font-size: 12px;
+	background: #F8F3F7;
+}
+.zjzz-buylist-ms1 {
+	float: left;
+	width: 100%;
+}
+.zjzz-buylist-goods,.zjzz-buylist-goods1 {
+	float: left;
+	width: 94%;
+	padding: 5px 3% 0 3%;
+	background: #FFFFFF;
+	border-bottom: 1px solid #F6F6F6;
+}
+.zjzz-buylist-goods img,.zjzz-buylist-goods1 img {
+	float: left;
+	width: 75px;
+	height: 75px;
+}
+.zjzz-buylist-gdetail {
+	display: block;
+	margin-left: 80px;
+}
+.zjzz-buylist-gtit,
+.zjzz-buylist-gd {
+	float: left;
+	width: 100%;
+	font-size: 14px;
+}
+.zjzz-buylist-gtit {
+	margin-top: 10px;
+}
+.zjzz-buylist-gd {
+	line-height: 35px;
+	color: #AFAFAF;
+}
+.zjzz-buylist-btn {
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.zjzz-buylist-btn a {
+	float: right;
+	width: 85px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 25px;
+	border-radius: 3px;
+}
+.zjzz-buylist-btn1 {
+	color: #393939;
+	margin-right: 15px;
+	border: 1px solid #CDCDCD;
+}
+.zjzz-buylist-btn2 {
+	color: #FF9201;
+	border: 1px solid #FF9201;
+}
+.zjzz-buylist-mt4{
+	float: left;
+	width: 100%;
+	height: 40px;
+	font-size: 12px;
+	line-height: 40px;
+	text-align: center;
+	color: #8D8D8D;
+	background: #FFFFFF;
+}
+.zjzz-buylist-mt4 img{
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-top: -5px;
+}

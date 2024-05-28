@@ -1,0 +1,28 @@
+body{background: #F7F7F7;}
+.personal-top{width: 100%;float: left;position: relative;height: 130px;}
+.personal-img{width: 100%;float: left;height: 130px;}
+.personal-top-box1{width: 94%;position: absolute;height: 130px;top: 0px;left: 0px;padding: 0px 3%;}
+.personal-top-img1{width: 70px;height: 70px;float: left;overflow: hidden;border:1px solid #D7D1D1;margin-top: 30px;
+border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;}
+.personal-top-img1 img{width: 70px;height: 70px;float: left;}
+.personal-top-box2{display: block;margin-left: 80px;height: 100px;margin-top: 30px;}
+.personal-top-text1{width: 75%;float: left;height: 25px;line-height: 25px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+color: #fff;margin-top: 25px;}
+.personal-top-write{width: 55px;float: right;height: 25px;font-size: 14px;color: #fff;background: url(../images/write-pen.png) no-repeat left center;
+background-size: 35%;text-align: right;line-height: 25px;margin-top: 25px;}
+.personal-box1{width: 100%;float: left;background: #fff;padding: 15px 0px;}
+.personal-box2{width: 25%;float: left;text-align: center;}
+.personal-box2.box3{width: 20%;}
+.personal-box1-text1{width: 100%;display: inline-block;font-size: 14px;color: #797778;}
+.personal-box1-text2{width: 100%;display: inline-block;font-size: 14px;color: #333;margin-top: 3px;}
+.mbt-05{margin:5px 0px;}
+.personal-box1-img1{width: 23px;height: 23px;display: inline-block;}
+.personal-box1-img1 img{width: 23px;height: 23px;float: left;}
+.personal-box4{width: 94%;float: left;padding: 0px 3%;background: #fff;height: 40px;line-height: 40px;font-size: 14px;
+color: #323232;margin-bottom: 5px;}
+.personal-box5{width: 94%;float: left;height: 45px;line-height: 45px;background: url(../images/arrow-right22.png) no-repeat 97% center #fff;
+background-size: 5%;padding: 0px 3%;font-size: 14px;color: #797778;border-bottom: 1px solid #E6E6E6;}
+.personal-box5-img1{width: 23px;height: 23px;float: left;margin-top: 11px;margin-right: 10px;}
+.personal-box5-img1 img{width: 23px;height: 23px;float: left;}
+.personal-box5-text2{width: 90%;line-height: 40px;font-size: 14px;color: #797778;text-align: center;float: left;background: #fff;
+margin-top: 10px;margin-left: 5%;border:1px solid #E6E6E6;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;}

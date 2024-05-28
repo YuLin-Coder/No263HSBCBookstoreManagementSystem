@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/pay" method="post">
+    订单号：<input type="text" name="WIDout_trade_no" required><br/>
+    订单名称：<input type="text" name="WIDsubject" required><br/>
+    付款金额：<input type="text" name="WIDtotal_amount" required><br/>
+    <input type="submit" value="下单"> <input type="reset" value="重置">
+</form>
+</body>
+</html>

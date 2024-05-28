@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <title>后台订单列表</title>
+    <style>
+        .typelp{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+<table class="table table-striped table-bordered table-hover dataTables-example" lay-skin="bon">
+
+    <thead>
+        <tr>
+            <th>订单ID</th>
+            <th>订单编号</th>
+            <th>价格</th>
+            <th>状态</th>
+            <th>详情</th>
+            <th>收货信息</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="order : ${list}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.orderId}"></td>
+            <td  th:text="${order.price}"></td>
+            <td>
+                <span th:if="${order.status == 0}" style="color: #00FF00">待付款</span>
+                <span th:if="${order.status == 1}" style="color: red">待发货</span>
+                <span th:if="${order.status == 2}">已发货</span>
+                <span th:if="${order.status == 3}">已收货</span>
+                <span th:if="${order.status == 4}">已评价</span>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td th:each="shop : ${order.orderShops}">
+                            <div class="item shop" style="width: 120px;height: 120px;">
+                                <div class="img">
+                                    <a href="javascript:;"><img style="height: 60px;width: 60px;" th:src="${shop.cover}"></a>
+                                </div>
+                                <div class="text">
+                                    <p class="title" style="cursor:pointer;"><a th:text="${shop.name+'*'+shop.num}"></a></p>
+                                    <p class="price">
+                                        <span class="pri">￥<span th:text="${shop.price}"></span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="layui-table" lay-skin="bon" lay-size="sm">
+                    <tr>
+                        <td>收货人：</td>
+                        <td th:text="${order.name}"></td>
+                    </tr>
+                    <tr>
+                        <td>电话：</td>
+                        <td th:text="${order.phone}"></td>
+                    </tr>
+                    <tr>
+                        <td>地址：</td>
+                        <td th:text="${order.address}"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <span th:if="${order.status == 1}" class="btn btn-info btn-xs" th:attr="oid=${order.id}" onclick="update(this,2)">发货</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.dataTables-example').dataTable();
+    });
+
+    function update(b,status) {
+        var id = $(b).attr("oid");
+        basePost({
+            url:"/order/update.htm",
+            data:{
+                id:id,
+                status:2
+            },success:function () {
+                layer.confirm('发货完成', {
+                    title: '提示',
+                    btn: ['确定'], //按钮
+                    skin: 'layui-layer-molv',
+                    closeBtn: 0
+                }, function(){
+                    location.reload();
+                });
+            }
+        })
+    }
+
+</script>
+
+
+</body>
+</html>

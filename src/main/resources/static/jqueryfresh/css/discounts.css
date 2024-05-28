@@ -1,0 +1,34 @@
+body{background: #fff;}
+.discounts-bigbox{width: 100%;float: left;margin-top: 45px;padding-bottom: 55px;}
+.discounts-banner1{width: 100%;float: left;}
+.discounts-banner1 img{width: 100%;float: left;}
+.discounts-box1{width: 94%;margin: 10px 3% 0px 3%;float: left;height: 140px;border:1px solid #DEDEDE;}
+.d-box1-img1{width: 140px;height: 140px;float: left;text-align: center;position: relative;}
+.d-box1-img1 img{width: 100px;display: inline-block;margin-top: 20px;}
+.discounts-box2{display: block;margin-left: 140px;height: 110px;margin-top: 15px;}
+.d-box2-text1{width: 95%;float: left;height: 40px;line-height: 20px;font-size: 14px;}
+.d-box2-text2{width: 95%;float: left;margin-top: 5px;font-size: 16px;color: #EF7D00;}
+.d-box2-text2 i{margin-left: 5px;font-size: 14px;color: #8D8D8D;text-decoration:line-through;}
+.d-box2-btn{padding: 0px 15px;float: left;height: 28px;line-height: 28px;border:none;outline: none;background: #F47C02;
+color: #fff;border-radius: 15px;font-size: 14px;margin-top: 8px;margin-left: 10px;}
+.mt-10{margin-top: 10px;}
+.d-box1-img2{width: 50px;height: 50px;position: absolute;top: 0px;left: 0px;background: url(../images/discounts-img4.png) no-repeat center center;
+background-size: 100%;}
+.discounts-bottom{width: 100%;height: 50px;line-height: 50px;background: #fff;position: fixed;bottom: 0px;left: 0px;
+border-top: 1px solid #F4F4F4;}
+.d-bottom-img1{width: 60px;height: 60px;position: absolute;bottom: 10px;left: 10px;background: url(../images/bottom-cart.png) no-repeat center center #FFD608;
+background-size: 50%;border-radius: 50%;}
+.d-bottom-img1 i{width: 15px;height: 15px;float: right;background: #FF9201;text-align: center;line-height: 15px;font-size: 12px;
+color: #fff;border-radius: 50%;}
+.d-bottom-text1{float: left;font-size: 16px;color: #FF9201;margin-left: 80px;}
+.d-bottom-text2{width: 100px;float: right;background: #FED700;color: #fff;text-align: center;}
+.border-bottom{border-bottom: 1px solid #DCDCDC;}
+.border-top{border-top: 1px solid #DCDCDC;}
+.special-sale-line1{width: 1px;height: 100%;background: #DCDCDC;position: absolute;top: 0px;left: 33.3%;}
+.special-sale-line2{width: 1px;height: 100%;background: #DCDCDC;position: absolute;top: 0px;left: 66.6%;}
+.special-sale-text3{width: 90%;float: left;height: 28px;line-height: 28px;font-size: 14px;color: #fff;
+text-align: center;margin-left: 5%;background: #FF9201;border-radius: 15px;margin-bottom: 8px;}
+.rule-title{width: 100%;float: left;font-size: 16px;margin-top: 5px;text-align: center;height: 40px;line-height: 40px;
+background: #fff;border-bottom: 1px solid #DCDCDC;}
+.rule-box1{width: 94%;float: left;background: #fff;padding: 15px 3%;font-size: 14px;line-height: 22px;}
+.rule-box1 p{margin-top: 5px;}

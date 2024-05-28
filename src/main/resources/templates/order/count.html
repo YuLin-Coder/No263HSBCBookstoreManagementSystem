@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <title>后台订单统计列表</title>
+    <style>
+        .typelp {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    用户总数：<span th:text="${userCount}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+                    商品总数：<span th:text="${shopCount}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    当日销售额：<span th:text="${dayMoney}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+                    当月销售额：<span th:text="${monthMoney}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 全局js -->
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <!-- Data Tables -->
+    <script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <!-- 自定义js -->
+    <script src="/js/content.js?v=1.0.0"></script>
+    <script src="/layer/layer.js"></script>
+    <script src="/base.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dataTables-example').dataTable();
+        });
+
+    </script>
+
+
+</body>
+<style>
+
+
+</style>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>汇丰书店</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
+
+</head>
+
+<body class="signin">
+<div class="signinpanel">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="signin-info">
+
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <form id="">
+                <h4 class="no-margins">登录：</h4>
+                <p class="m-t-md">管理后台</p>
+                <input type="text" class="form-control uname" placeholder="用户名" name="loginName" />
+                <input type="password" class="form-control pword m-b" placeholder="密码" name="password" />
+                <span class="btn btn-success btn-block" onclick="login()">登录</span>
+            </form>
+        </div>
+    </div>
+    <div class="signup-footer">
+        <div class="pull-left">
+            &copy; 汇丰书店  版权所有
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script>
+    function login() {
+        var data = {};
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            data [this.name] = this.value;
+        });
+        basePost({
+            url:"/loginData.html",
+            data:data,
+            success:function (req) {
+                window.location.href="/index.htm"
+            }
+        })
+    }
+</script>
+</body>
+</html>

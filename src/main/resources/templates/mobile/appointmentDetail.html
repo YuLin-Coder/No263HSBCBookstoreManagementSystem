@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/layuiMall/res/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/layuiMall/res/layui/css/layui.css">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <link href="/spop-gh-pages/dist/spop.min.css" rel="stylesheet"/>
+    <link href="/spop-gh-pages/src/styles.min.css" rel="stylesheet"/>
+    <title>公告详情页面</title>
+</head>
+<body>
+
+<div class="content content-nav-base datails-content" style="background-color: white;">
+    <div class="data-cont-wrap w1200">
+        <div class="crumb">
+            <a href="/mobile/index.html">首页</a>
+            <span>></span>
+            <a href="javascript:history.go(-1)">返回上一页</a>
+        </div>
+        <div class="product-intro layui-clear">
+
+            <div class="itemInfo-wrap">
+                <div class="itemInfo">
+                    <div class="title">
+                        <h4 th:text="${appointment.title}"></h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">公告内容</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show" th:utext="${appointment.content}">内容</div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="id" th:value="${id}">
+<input type="hidden" id="customerId" th:value="${customerId}">
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script src="/spop-gh-pages/src/prism.js"></script>
+<script src="/spop-gh-pages/dist/spop.min.js"></script>
+<script src="/spop-gh-pages/src/scripts.min.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'element'], function () {
+
+    });
+
+</script>
+
+
+</body>
+</html>

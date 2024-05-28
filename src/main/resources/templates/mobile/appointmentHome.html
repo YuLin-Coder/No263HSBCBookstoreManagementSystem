@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>公告主页面</title>
+    <link rel="stylesheet" href="/res/layui/css/layui.css">
+    <link rel="stylesheet" href="/res/css/global.css">
+</head>
+<body  style="background-size: cover;">
+<div class="layui-container" >
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+
+            <div class="fly-panel" style="margin-bottom: 0;">
+                <div class="fly-panel-title fly-filter">
+                    <a style="cursor:pointer"  class="layui-this types" onclick="typek(this)">综合</a>
+                        <span th:each="list : ${typeList}">
+                             <span class="fly-mid"></span>
+                        <a style="cursor:pointer"  class="types" onclick="typek(this)" th:attr="oid=${list.id}"  th:text="${list.typeName}"></a>
+                        </span>
+                </div>
+                <ul class="fly-list-new ">
+                    <li th:each="app : ${appList}" th:class="${'app '+app.typeId}">
+                        <h2>
+                            <a th:attr="href=${'/app_mobile/detail?id='+app.id}"  th:text="${app.title}"></a>
+                        </h2>
+                        <div class="fly-list-info">
+                            作者：<span th:text="${app.userName}"></span>
+                            发布时间：<span th:text="${#dates.format(app.createdTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fly-footer">
+    <p><a  target="_blank">汇丰书店</a> 2022 &copy; <a target="_blank"> 版权所有</a></p>
+</div>
+
+<script src="/res/layui/layui.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/base.js"></script>
+<script>
+    layui.config({
+        version: "3.0.0"
+        ,base: '/res/mods/' //这里实际使用时，建议改成绝对路径
+    }).extend({
+        fly: 'index'
+    }).use(['fly','layer'],function () {
+
+    });
+
+    $(function () {
+        setTimeout(userLv,1000)
+
+    });
+
+    function typek(b) {
+        var type = $(b).attr("oid");
+        $(".types").removeClass("layui-this");
+        $(b).addClass("layui-this");
+        if(type==""){
+            $(".app").show();
+        }else{
+            $(".app").hide();
+            $("."+type).show();
+        }
+    }
+
+
+    function login() {
+        layui.layer.open({
+            type: 2,
+            title: '用户登录',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['600px', '445px'],
+            content: '/login.htmx' //iframe的url
+        });
+    }
+
+    function reg() {
+        layui.layer.open({
+            type: 2,
+            title: '游客注册',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['600px', '445px'],
+            content: '/reg.htmx' //iframe的url
+        });
+    }
+
+    function sunmitStu(){
+        window.open("/study.htmx");
+    }
+
+
+</script>
+
+
+</body>
+</html>

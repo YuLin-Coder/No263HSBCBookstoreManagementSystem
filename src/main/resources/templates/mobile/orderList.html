@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="/jqueryfresh/css/reset.css" type="text/css"/>
+    <link href="/jqueryfresh/css/my-indent.css" rel="stylesheet" type="text/css">
+    <title>我的订单</title>
+</head>
+<body>
+<div class="zjzz-buylist-wear">
+    <div class="zjzz-buylist-top2" style="margin-top: -44px;">
+        <a class="zjzz-buylist-tp1" onclick="typeChange(0,this)">
+            <i class="zjzz-buylist-tp2">全部</i>
+        </a>
+        <a class="zjzz-buylist-tp1" onclick="typeChange(1,this)">
+            <i>待发货</i>
+        </a>
+        <a  class="zjzz-buylist-tp1" onclick="typeChange(2,this)">
+            <i>待收货</i>
+        </a>
+        <a class="zjzz-buylist-tp1" onclick="typeChange(3,this)">
+            <i>已收货</i>
+        </a>
+    </div>
+    <div class="zjzz-buylist-mid" style="margin-top: 40px;">
+        <!--全部-->
+        <div class="zjzz-buylist-m1">
+            <div th:class="${'zjzz-buylist-goods1 status status'+obj.status}" th:each="obj : ${orders}" th:attr="status=${obj.status}">
+                <div class="zjzz-buylist-gtime">
+                    <span class="zjzz-buylist-gtime1" >订单编号：</span>
+                    <span class="zjzz-buylist-gtime1" th:text="${obj.orderId}">1481233131129778178</span>
+                    <span class="zjzz-buylist-gtime1" style="margin-left: 5px;">下单时间：</span>
+                    <span class="zjzz-buylist-gtime1" th:text="${#dates.format(obj.time, 'yyyy-MM-dd HH:mm')}">2017-11-11</span>
+                    <span class="zjzz-buylist-gtime2">
+                        <span th:if="${obj.status==0}">未付款</span>
+                        <span th:if="${obj.status==1}">未发货</span>
+                        <span th:if="${obj.status==2}">已发货</span>
+                        <span th:if="${obj.status==3}">已收货</span>
+                    </span>
+                </div>
+                <div class="zjzz-buylist-gtime">
+                    收货地址：<span th:text="${obj.name+'('+obj.phone+')  '+obj.address}"></span>
+                </div>
+                <div class="zjzz-buylist-det" th:each="shop : ${obj.orderShops}">
+                    <img th:src="${shop.cover}"/>
+                    <div class="zjzz-buylist-gdetail">
+                        <span class="zjzz-buylist-gtit1" th:text="${shop.name}">Dr.Ci:Labo 城野医生 卓效收敛化妆水 限量版 200毫升</span>
+                        <span class="zjzz-buylist-gmoney">
+									<i class="zjzz-buylist-gm1" th:text="${'￥'+shop.price}">￥179.00</i>
+									<i class="zjzz-buylist-gm2" th:text="${'x'+shop.num}">x1</i>
+                             <span th:if="${obj.status==3}">
+                                 <a style="color: #1E9FFF;font-size: 12px;" onclick="comment(this)" th:if="${shop.content==null}" th:attr="oid=${shop.id}">评价</a>
+                                  <a style="color: #1E9FFF;font-size: 12px;" onclick="comment(this)" th:if="${shop.content!=null}" th:attr="oid=${shop.id}">已评价</a>
+                             </span>
+						</span>
+                    </div>
+                </div>
+                <span class="zjzz-buylist-goodsm">
+							<i>总额：<i class="zjzz-buylist-gm4" th:text="${'￥'+obj.price}">￥179.00</i></i>
+						</span>
+                <div class="zjzz-buylist-btn">
+                    <span th:if="${obj.status==2}">
+                        <a class="zjzz-buylist-btn3" th:attr="oid=${obj.id}" onclick="shouhuo(this)">确认收货</a>
+                    </span>
+                </div>
+                <div class="zjzz-buylist-btn">
+                    <span th:if="${obj.status==0}">
+                        <a class="zjzz-buylist-btn3" th:attr="oid=${obj.id}" onclick="tuihuo(this)">退货</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/base.js"></script>
+<script src="/layer/layer.js"></script>
+<script >
+
+    function typeChange(status,b) {
+        if(status){
+            $(".status").hide();
+            $(".status"+status).show();
+        }else{
+            $(".status").show();
+        }
+        $(".zjzz-buylist-tp2").removeClass("zjzz-buylist-tp2");
+        $(b).find("i").addClass("zjzz-buylist-tp2");
+
+    }
+
+    function comment(b) {
+            var id = $(b).attr("oid");
+            layer.open({
+                type: 2,
+                title: "评价",
+                area: ['100%', "400px"],
+                skin: 'layui-layer-molv',
+                content: "/order/comment.do?id="+id,
+            });
+    }
+    
+    function shouhuo(b) {
+        var id = $(b).attr("oid");
+        basePost({
+            url:"/order/shouhuo.do",
+            data:{
+                id:id,
+            },success:function () {
+                layer.confirm('感谢您的使用，欢迎下次继续使用！', {
+                    title: '提示',
+                    btn: ['确定'], //按钮
+                    closeBtn: 0
+                }, function(){
+                    location.reload();
+                });
+            }
+        })
+    }
+    function tuihuo(b) {
+        var id = $(b).attr("oid");
+        basePost({
+            url:"/order/tuihuo.do",
+            data:{
+                id:id,
+            },success:function () {
+                layer.confirm('退货成功 ！', {
+                    title: '提示',
+                    btn: ['确定'], //按钮
+                    closeBtn: 0
+                }, function(){
+                    location.reload();
+                });
+            }
+        })
+    }
+</script>
+</body>
+</html>

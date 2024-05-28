@@ -1,0 +1,26 @@
+body{background: #F1F1F1;}
+.coupon-title{width: 100%;float: left;height: 47px;line-height: 45px;background: #fff;}
+.coupon-title-text1{width: 23.3%;float: left;font-size: 16px;color: #858585;text-align: center;margin: 0px 5%;}
+.tc-picthon{border-bottom: 2px solid #FF9201;color: #FF9201;}
+.coupon-bigbox{width: 100%;float: left;position: relative;height: 122px;}
+.h-190{height: 190px;-moz-transition-duration: 0.4s;transition-duration: 0.4s;-webkit-transition-duration: 0.4s;}
+.coupon-box2{width: 94%;float: left;position: relative;margin-top: 10px;margin-left: 2.5%;border:1px solid #E6E6E6;border-radius: 7px;background: #fff;height: 110px;}
+.coupon-semicircle1{width: 14px;height: 14px;position: absolute;top:-9px;left:33%;border:1px solid #E5E5E5;background: #F1F1F1;border-radius: 50%;}
+.coupon-semicircle1:after{content: "";width: 16px;height: 9px;position: absolute;top:-1px;left:-1px;background: #F1F1F1;}
+.coupon-semicircle2{width: 14px;height: 14px;position: absolute;bottom:-9px;left:33%;border:1px solid #E5E5E5;background: #F1F1F1;border-radius: 50%;}
+.coupon-semicircle2:after{content: "";width: 15px;height: 6px;position: absolute;top:8px;left:-1px;background: #F1F1F1;}
+.coupon-line{width: 1px;height: 80px;border-left: 1px dashed #E3E3E3;position: absolute;left: 35.5%;top: 15px;}
+.coupon-box3{width: 33%;float: left;height: 100%;}
+.coupon-text1{width: 90%;float: left;margin-top: 10px;font-size: 12px;color: #A6A6A6;margin-left: 10%;}
+.coupon-text2{width: 100%;float: left;font-size: 24px;color: #FF9201;text-align: center;margin-top: 12px;}
+.coupon-text3{width: 100%;float: left;font-size: 12px;color: #A6A6A6;text-align: center;margin-top: 15px;}
+.coupon-box4{width: 63%;float: right;height:100%;align-items:center;justify-content:center;flex-direction:column;display: -webkit-flex;display: flex;}
+.coupon-text4{font-size: 14px;color: #727272;width: 90%;display: flex;padding: 0px 3% 0px 5%;line-height: 22px;}
+.coupon-text5{font-size: 12px;color: #BBBBBB; display: flex;padding: 0px 3% 0px 5%;width: 90%;margin-top: 5px;position: relative;}
+.coupon-text5 i{position: absolute;right: 10px;top: 0px;}
+.coupon-box5{width: 94%;margin-left: 2.5%;border:1px solid #E6E6E6;border-radius: 0px 0px 7px 7px;background: #fff;min-height: 70px;border-top: none;
+position: absolute;left: 0px;top: 114px;}
+.coupon-line2{width: 100%;float: left;border-top: 1px dashed #E3E3E3;margin-top: 5px;}
+.coupon-text6{width: 94%;float: left;font-size: 12px;color: #777777;padding: 0px 3%;margin-top: 10px;}
+@media screen and (max-width: 320px) {.coupon-text6{width: 94%;float: left;font-size: 12px;color: #777777;padding: 0px 3%;margin-top: 7px;}}
+.tcolor-gray{color: #A9A9A9;}

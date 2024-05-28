@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <title>后台在售商品列表</title>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>封面</th>
+                                <th>名称</th>
+                                <th>原始价格</th>
+                                <th>实际价格</th>
+                                <th>状态</th>
+                                <th>库存</th>
+                                <th>热卖</th>
+                                <th>评分</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="obj : ${list}">
+                                <td th:text="${obj.id}"></td>
+                                <td >
+                                    <img th:src="${obj.cover}" alt="" style="height:50px;">
+                                </td>
+                                <td th:text="${obj.name}"></td>
+                                <td th:text="${obj.price}"></td>
+                                <td th:text="${obj.discountPrice}"></td>
+                                <td>
+                                    <span th:if="${obj.status==true}">上架</span>
+                                    <span th:if="${obj.status!=true}">下架</span>
+                                </td>
+                                <td th:text="${obj.stock}"></td>
+                                <td>
+                                    <span th:if="${obj.hot==true}">精选热卖</span>
+                                    <span th:if="${obj.hot!=true}">普通售卖</span>
+                                </td>
+                                <td th:text="${obj.score}"></td>
+                                <td th:attr="oid=${obj.id}">
+                                    <span class="btn btn-warning btn-xs" onclick="save(this)">编辑</span>
+                                    <span class="btn btn-warning btn-xs" onclick="del(this)">删除</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function () {
+        $('.dataTables-example').dataTable();
+    });
+
+    function save(b) {
+        var id = $(b).parent().attr("oid");
+        layer.open({
+            type: 2,
+            title: "编辑",
+            area: ['800px', "95%"],
+            skin: 'layui-layer-molv',
+            content: "/yx_shop/save.htm?id="+id,
+        });
+    }
+
+    function del(b) {
+        var id = $(b).parent().attr("oid");
+        layer.confirm('确定删除,并放到库存中吗？', {
+            btn: ['确定','取消'], //按钮
+            skin: 'layui-layer-molv'
+        }, function(){
+            basePost({
+                url:"/shop/del.htm",
+                data:{
+                    id:id,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('删除成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            })
+        }, function(){
+        });
+    }
+
+
+</script>
+
+</body>
+
+</html>

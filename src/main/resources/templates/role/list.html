@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <title>角色列表页面</title>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <span class="btn btn-info" onclick="add()">添加角色</span>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>角色名称</th>
+                                <th>状态</th>
+                                <th>添加时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="obj : ${list}">
+                                <td th:text="${obj.name}"></td>
+                                <td>
+                                    <span th:if="${obj.status==true}" style="color: forestgreen">启用</span>
+                                    <span th:if="${obj.status==false}" style="color: red">禁用</span>
+                                </td>
+                                <td th:text="${#dates.format(obj.time, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                <td th:attr="oid=${obj.id}">
+                                    <span class="btn btn-warning btn-xs" onclick="edit(this)">编辑</span>
+                                    <span class="btn btn-danger btn-xs" onclick="del(this)">删除</span>
+                                    <span th:if="${obj.status==false}" onclick="qiyong(this)" class="btn btn-info btn-xs">启用</span>
+                                    <span th:if="${obj.status==true}" onclick="jinyong(this)" class="btn btn-danger btn-xs">禁用</span>
+                                    <span class="btn btn-primary btn-xs" onclick="auth(this)">菜单权限配置</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function () {
+        $('.dataTables-example').dataTable();
+    });
+
+
+    function auth(b) {
+        var id = $(b).parent().attr("oid");
+        layer.open({
+            type: 2,
+            title: "角色权限分配",
+            area: ['500px', "600px"],
+            skin: 'layui-layer-molv',
+            content: "/role/auth.htm?id="+id,
+        });
+    }
+
+
+    function edit(b) {
+        var id = $(b).parent().attr("oid");
+        layer.prompt({title: '请输入角色名称', formType: 2}, function(text, index){
+            basePost({
+                url:"/role/save.htm",
+                data:{
+                    id:id,
+                    name:text,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('保存成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            })
+            
+        });
+    }
+
+    function qiyong(b) {
+        var id = $(b).parent().attr("oid");
+        layer.confirm('确定启用角色？', {
+            btn: ['确定','取消'], //按钮
+            skin: 'layui-layer-molv'
+        }, function(){
+            basePost({
+                url:"/role/save.htm",
+                data:{
+                    id:id,
+                    status:true,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('启用成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            })
+        }, function(){
+        });
+    }
+
+    function jinyong(b) {
+        var id = $(b).parent().attr("oid");
+        layer.confirm('确定禁用角色？', {
+            btn: ['确定','取消'], //按钮
+            skin: 'layui-layer-molv'
+        }, function(){
+            basePost({
+                url:"/role/save.htm",
+                data:{
+                    id:id,
+                    status:false,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('禁用成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            })
+        }, function(){
+        });
+    }
+
+    function del(b) {
+        var id = $(b).parent().attr("oid");
+        layer.confirm('确定删除角色？', {
+            btn: ['确定','取消'], //按钮
+            skin: 'layui-layer-molv'
+        }, function(){
+            basePost({
+                url:"/role/del.htm",
+                data:{
+                    id:id,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('删除成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            })
+        }, function(){
+        });
+    }
+
+    function add() {
+        layer.prompt({title: '请输入角色名称', formType: 2}, function(text, index){
+            basePost({
+                url:"/role/save.htm",
+                data:{
+                    name:text,
+                    status: true,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('保存成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }
+            })
+
+        });
+    }
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+body{background: #F2F0F1;}
+.sh-adress-box1{width: 88%;float: left;margin-top: 5px;margin-left: 3%;background: #fff;padding: 0px 3%;}
+.sh-adress-box2{width: 100%;float: left;padding: 12px 0px;border-bottom: 1px solid #F4F4F4;}
+.sh-adress-text1{width: 50%;float: left;font-size: 15px;}
+.text-r{text-align: right;}
+.sh-adress-text2{width: 100%;float: left;margin-top: 10px;font-size: 12px;color: #8A8A8A;line-height: 20px;}
+.sh-adress-box3{width: 100%;float: left;height: 45px;line-height: 45px;}
+.sh-adress-text3{width: 90px;height:45px;float: left;background: url(../images/check1.png) no-repeat left center;background-size: 17%;padding-left: 25px;
+font-size: 14px;}
+.img2{background: url(../images/check2.png) no-repeat left center;background-size: 17%;}
+.sh-adress-text4{width: 30px;height: 45px;line-height: 45px;float: right;background: url(../images/delete.png) no-repeat left center;background-size: 34%;
+padding-left: 25px;font-size: 14px;}
+.delete-layer-bg{width: 100%;height:100%;position: fixed;top: 0px;left: 0px;z-index: 668;background: rgba(0,0,0,0.5);}
+.delete-layer{width: 90%;height: 130px;position: fixed;z-index: 998;top: 34%;left: 5%;background-color: #FFFFFF;}
+.active-a2{width: 100%;float: left;height: 80px;line-height: 80px;text-align: center;border-bottom: 1px solid #E0E0DF;font-size: 14px;}
+.active-a3{width: 100%;float: left;position: relative;height: 45px;line-height: 45px;font-size: 14px;text-align: center;color: #1B81FC;}
+.active-a3 span{width: 50%;float: left;}
+.active-a3-x1{width: 1px;height: 43px;position: absolute;top: 0px;left: 50%;background-color: #E0E0DF;}
+.ovflowhide{width: 100%;height: 100%;position: fixed;top: 0px;left: 0px;overflow: hidden;}
+.set-text1{width: 90%;float: left;height: 35px;line-height: 35px;border:1px solid #FF9201;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;
+color: #FF9201;margin-left: 5%;text-align: center;margin-top: 30px;background: rgba(255,255,255,0);outline: none;}
+/*修改插件样式*/
+.delivery-layer-box{width: 100%;float: left;height: 45px;line-height: 45px;border-bottom: 1px solid #E4E4E4;font-size: 15px;overflow: hidden;text-overflow: ellipsis;
+white-space: nowrap;padding: 0px 3%;background: #fff;}
+@media screen and (min-width: 414px) {.delivery-layer-box{width: 94%;float: left;height: 45px;line-height: 45px;border-bottom: 1px solid #E4E4E4;font-size: 16px;
+overflow: hidden;text-overflow: ellipsis;white-space: nowrap;padding: 0px 3%;} }
+.cell-arrow:after {width: 30px;height: 40px;content: "";background: url();float: right;}
+/*填写地址管理*/
+.receiv-text1{width: 94%;float: left;min-height:30px;line-height: 25px;background: #F2F0F1;padding: 5px 3% 0px 3%;font-size: 12px;}
+.receiv-box1{width: 94%;float: left;height: 45px;line-height: 45px;background: #fff;border-bottom: 1px solid #EDEDED;padding: 0px 3%;}
+.receiv-input1{width: 100%;height: 45px;line-height: 45px;font-size: 14px;float: left;outline: none;border:none;}
+.receiv-box2{width: 94%;float: left;height: 80px;background: #fff;padding: 0px 3%;}
+.receiv-input2{width: 100%;float: left;height: 60px;line-height: 22px;background: #fff;padding: 10px 0px;overflow-x: hidden;overflow-y: auto;}

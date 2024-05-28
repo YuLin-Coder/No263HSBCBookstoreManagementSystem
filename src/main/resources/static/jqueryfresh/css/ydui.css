@@ -1,0 +1,41 @@
+.g-view { margin: 0 auto; max-width: 750px; min-width: 320px; }
+.g-view:before { content: ''; display: block; width: 100%; height: 0.9rem; }
+.g-view:after { content: ''; display: block; width: 100%; height: 1.5rem; }
+.g-flexview { height: 100%; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; margin: 0 auto; max-width: 750px; min-width: 320px; }
+.g-scrollview { width: 100%; height: 100%; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; position: relative; margin-bottom: -1px; }
+.g-scrollview:after { content: ''; display: block; width: 100%; height: 0.5rem; }
+.ios .g-scrollview { margin-top: 1px; }
+.hairline .g-scrollview { margin-top: 0.5px; }
+.g-fix-ios-overflow-scrolling-bug { -webkit-overflow-scrolling: auto; }
+.mask-black-dialog { background-color: rgba(0, 0, 0, 0.4); position: fixed; z-index: 1500; bottom: 0; right: 0; left: 0; top: 0; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }
+.mask-black { background-color: rgba(0, 0, 0, 0.4); position: fixed; z-index: 900; bottom: 0; right: 0; left: 0; top: 0; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }
+.mask-white-dialog { background-color: rgba(0, 0, 0, 0); position: fixed; z-index: 1500; bottom: 0; right: 0; left: 0; top: 0; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }
+.mask-white { background-color: rgba(0, 0, 0, 0); position: fixed; z-index: 500; bottom: 0; right: 0; left: 0; top: 0; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }
+.m-cityselect { position: fixed; bottom: 0; left: 0; width: 100%; height: 75%; z-index: 1000; background-color: #fff; -webkit-transform: translate(0, 100%); transform: translate(0, 100%); -webkit-transition: -webkit-transform .3s; transition: -webkit-transform .3s; transition: transform .3s; transition: transform .3s, -webkit-transform .3s; }
+.m-cityselect.brouce-in { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
+.cityselect-header { position: absolute; top: 0; left: 0; width: 100%; z-index: 1; }
+.cityselect-header:after { content: ''; position: absolute; z-index: 0; bottom: 0; left: 0; width: 100%; height: 1px; border-bottom: 1px solid #D9D9D9; -webkit-transform: scaleY(0.5); transform: scaleY(0.5); -webkit-transform-origin: 0 100%; transform-origin: 0 100%; }
+.cityselect-title { width: 100%; font-size: .3rem; text-align: center; height: 45px; line-height: 45px; position: relative; }
+.cityselect-title:after { content: ''; position: absolute; z-index: 0; bottom: 0; left: 0; width: 100%; height: 1px; border-bottom: 1px solid #B2B2B2; -webkit-transform: scaleY(0.5); transform: scaleY(0.5); -webkit-transform-origin: 0 100%; transform-origin: 0 100%; }
+.cityselect-nav { width: 100%; padding-left: .2rem; overflow: hidden; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+.cityselect-nav > a { font-size: .26rem; color: #222; display: block; height: 40px; line-height: 46px; padding: 0 .2rem; position: relative; margin-right: .15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 40%; }
+.cityselect-nav > a.crt { color: #F23030; }
+.cityselect-nav > a.crt:after { content: ''; width: 100%; height: 2px; background-color: #F23030; position: absolute; bottom: 0; left: 0; z-index: 2; }
+.cityselect-content { height: 100%; padding-top: 85px; width: 100%; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+.cityselect-content.cityselect-move-animate { -webkit-transition: -webkit-transform .3s; transition: -webkit-transform .3s; transition: transform .3s; transition: transform .3s, -webkit-transform .3s; }
+.cityselect-content.cityselect-next { -webkit-transform: translate(-50%, 0); transform: translate(-50%, 0); }
+.cityselect-content.cityselect-prev { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
+.cityselect-content > .cityselect-item { display: block; height: inherit; width: 50%; /* for old android */
+-webkit-box-flex: 0; -webkit-flex: 0 0 50%; -ms-flex: 0 0 50%; flex: 0 0 50%; overflow-y: auto; -webkit-overflow-scrolling: touch; background-color: #FFF; }
+.cityselect-content > .cityselect-item::-webkit-scrollbar {
+ width: 0;
+}
+.cityselect-content > .cityselect-item:nth-child(2n) { background-color: #F5F5F5; }
+.cityselect-item-box { width: 100%; height: inherit; display: block; padding: 0 .4rem; }
+.cityselect-item-box > a { color: #333; font-size: .26rem; height: 40px; line-height: 40px; overflow: hidden; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; width: 100%; position: relative; z-index: 1; }
+.cityselect-item-box > a:before { content: ''; position: absolute; z-index: 0; bottom: 0; left: 0; width: 100%; height: 1px; border-bottom: 1px solid #D9D9D9; -webkit-transform: scaleY(0.5); transform: scaleY(0.5); -webkit-transform-origin: 0 100%; transform-origin: 0 100%; }
+.cityselect-item-box > a:active { background: none;/* for firefox */
+}
+.cityselect-item-box > a span { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; display: block; }
+.cityselect-item-box > a.crt { color: #F23030; }
+.cityselect-item-box > a.crt:after { display: block; content: ''; font-family: 'YDUI-INLAY'; }

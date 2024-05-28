@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" type="text/css" href="/layuiMall/res/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/layuiMall/res/layui/css/layui.css">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <script type="text/javascript" src="/layuiMall/res/layui/layui.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+<body>
+<div class="content content-nav-base shopcart-content">
+    <div class="cart" style="width: 950px; margin:0 auto;">
+        <div class="cart-title">收货地址<i>
+            <select class="" name="" id="addressId" style="width:600px;">
+                <option  th:each="address : ${customerAddressEntities}" th:value="${address.id}"
+                         th:text="${address.name+'('+address.phone+')'+address.address}" >
+                </option>
+            </select>
+        </i>
+        </div>
+        <!--<div class="ibox-content">-->
+            <!--剩余积分：<span style="color: red;" th:text="${integral}" id="all"></span>-->
+            <!--<span class="btn btn-info" onclick="useIntegral()">使用积分</span>-->
+            <!--<span class="btn btn-info" onclick="unUseIntegral()">不使用积分</span>-->
+        <!--</div>-->
+        <div class="cart-table-th">
+            <div class="th th-chk">
+                <div class="select-all">
+                    <div class="cart-checkbox">
+                        <input class="check-all check" id="allCheckked" type="checkbox" value="true">
+                    </div>
+                    <label>&nbsp;&nbsp;全选</label>
+                </div>
+            </div>
+            <div class="th th-item" style="width:260px;">
+                <div class="th-inner" >
+                    商品
+                </div>
+            </div>
+            <div class="th th-price" style="width:120px;">
+                <div class="th-inner">
+                    单价
+                </div>
+            </div>
+            <div class="th th-amount" style="width:200px;">
+                <div class="th-inner" >
+                    数量
+                </div>
+            </div>
+            <div class="th th-sum" style="width:150px;">
+                <div class="th-inner" >
+                    小计
+                </div>
+            </div>
+            <div class="th th-op">
+                <div class="th-inner">
+                    操作
+                </div>
+            </div>
+        </div>
+        <div class="OrderList">
+            <div class="order-content" id="list-cont">
+                <ul class="item-content layui-clear" th:each="gat : ${gats}">
+                    <li class="th th-chk">
+                        <div class="select-all">
+                            <div class="cart-checkbox">
+                                <input class="CheckBoxShop check shops"  type="checkbox" num="all" name="select-all" th:value=" ${gat.id}">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="th th-item" style="width:260px;">
+                        <div class="item-cont">
+                            <a href="javascript:;"><img th:src="${gat.shopEntity.cover}" alt=""></a>
+                            <div class="text">
+                                <div class="title" th:text="${gat.shopEntity.name}"></div>
+<!--                                <p th:text="${gat.shopEntity.specifications}"></p>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="th th-price" style="width:120px;">
+                        <span class="th-su" th:text="${gat.shopEntity.discountPrice}"></span>
+                    </li>
+                    <li class="th th-amount" style="width:200px;">
+                        <div class="box-btn layui-clear">
+                            <div class="less layui-btn">-</div>
+                            <input class="Quantity-input" type=""  name="" th:value="${gat.num}" disabled="disabled" th:attr="id=${'N'+gat.id}" >
+                            <div class="add layui-btn">+</div>
+                        </div>
+                    </li>
+                    <li class="th th-sum" style="width:150px;">
+                        <span class="sum" th:attr="id=${'P'+gat.id}"  th:text="${gat.shopEntity.discountPrice * gat.num}"></span>
+                    </li>
+                    <li class="th th-op">
+                        <span class="dele-btn" th:attr="gid=${gat.id}" onclick="del(this)">删除</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="FloatBarHolder layui-clear">
+            <div class="th th-chk">
+                <div class="select-all">
+                    <div class="cart-checkbox">
+                        <input class="check-all check" id="" name="select-all" type="checkbox"  value="true">
+                    </div>
+                    <label>&nbsp;&nbsp;已选<span class="Selected-pieces">0</span>件</label>
+                </div>
+            </div>
+            <div class="th Settlement">
+                <button class="layui-btn" onclick="pay()">结算</button>
+            </div>
+            <div class="th total">
+                <p>应付：<span class="pieces-total" id="payd">0</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script type="text/javascript">
+    function useIntegral() {
+        const result = $.ajax(
+            {url: '/useIntegral', async: false}
+        )
+        console.log(result)
+    }
+    function unUseIntegral() {
+        const result = $.ajax(
+            {url: '/unUseIntegral', async: false}
+        )
+        console.log(result)
+    }
+    layui.config({
+        base: '/layuiMall/res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
+    }).use(['mm','jquery','element','car'],function(){
+        var mm = layui.mm,$ = layui.$,element = layui.element,car = layui.car;
+        car.init()
+    });
+
+    function del(b) {
+        var gid = $(b).attr("gid");
+        basePost({
+            url:"/shoppingGat/delete.do",
+            data: {
+                id:gid
+            },
+            success: function (req) {
+                location.reload();
+            }
+        })
+    }
+
+    function pay() {
+        var ids = "";
+        var prices = "";
+        var nums = "";
+        var shops = $(".shops");
+        for (let i = 0; i < shops.length ; i++) {
+            var shop = shops.eq(i);
+            var id = shop.val().trim();
+            var price = $("#P"+id).html();
+            var num = $("#N"+id).val();
+            ids+=","+id;
+            prices+=","+price;
+            nums+=","+num;
+        }
+        ids = ids.replace(",","");
+        prices = prices.replace(",","");
+        nums = nums.replace(",","");
+        var price = $("#payd").html().replace("￥","");
+        var addressId = $("#addressId").val();
+        basePost({
+            url:"/order/jiesuan.do",
+            data:{
+                ids:ids,
+                prices:prices,
+                nums:nums,
+                price:price,
+                addressId:addressId,
+            },
+            success:function (data) {
+                layer.alert("付款成功，详情请到订单界面查看！");
+                window.open('http://127.0.0.1:8080/pay?&ids='+ids+'&amount='+price);
+                window.parent.tiaozhuan('/order/list.do');
+            },
+            error: function (res) {
+                alert(res.msg);
+            }
+
+        });
+    }
+</script>
+</body>
+</html>

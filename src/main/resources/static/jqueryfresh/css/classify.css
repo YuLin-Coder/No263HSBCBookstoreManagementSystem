@@ -1,0 +1,46 @@
+body,html,.near-box{width: 100%;height: 100%;}
+.yx-index-top{width: 100%;height: 45px;position: fixed;background: #fff;z-index: 22;top: 0px;left:0px;
+border-bottom: 1px solid #f1f1f1;}
+.index-top-box1{width: 17%;height: 100%;float: left;position: absolute;right: 0px;top: 0px;text-align: center;}
+.index-top-img1{width: 20px;height: 20px;display: inline-block;margin-top: 12px;}
+.index-top-img1 img{width: 20px;}
+.index-top-text1{width: 100%;float: left;font-size: 12px;margin-top: 3px;color: #A8A3A7;}
+.index-top-box2{width: 100%;float: left;height: 45px;text-align: center;line-height: 45px;}
+.fresh-toptext1{display: inline-block;font-size: 16px;}
+.fresh-topimg1{width: 12px;height: 12px;display: inline-block;background: url(../images/triangle.png) no-repeat center center;
+background-size: 100%;margin-left: 5px;}
+/*分类页开始*/
+.classify-bigbox{width: 100%;height: 100%;position: fixed;top: 0px;left: 0px;z-index: 2;}
+.classify-perch{width: 100%;height: 46px;float: left;}
+.classify-perch-r{width: 100%;height: 87px;float: left;}
+.classify-perch2{width: 100%;height: 50px;float: left;}
+.classify-left{width: 30%;height: 100%;float: left;overflow-x: hidden;overflow-y: auto;border-right: 1px solid #F4F4F4;}
+.classify-text1{width: 100%;float: left;text-align: center;height: 40px;line-height: 40px;overflow: hidden;font-size: 14px;
+border-bottom: 1px solid #EFEAEE;}
+.pitch-on2{position: relative;}
+.pitch-on2:after{content: "";width: 3px;height: 30px;background-color: #FF9201;position: absolute;top: 5px;left: 0px;}
+/*分类右部分*/
+.classify-right{width: 69.5%;float: right;height: 100%;overflow-x: hidden;overflow-y: auto;}
+.classify-right-title{width:69.5%;font-size: 14px;height: 40px;line-height: 40px;border-bottom:1px solid #EFEAEE;
+position: fixed;top: 46px;right: 0px;background-color: #fff;}
+.classifyrt-text1{width: 33.3%;text-align: center;float: left;font-size: 12px;}
+.tcolor-yellow{color: #FF9201;}
+.sort-img{width: 15px;height: 15px;display: inline-block;background: url(../images/sort1.png) no-repeat center center;
+background-size: 100%;vertical-align: middle;margin-top: -3px;}
+.sort-img2{width: 15px;height: 15px;display: inline-block;background: url(../images/sort2.png) no-repeat center center;
+background-size: 100%;vertical-align: middle;margin-top: -3px;}
+.img3{background: url(../images/sort3.png) no-repeat center center;background-size: 100%;}
+.classify-list{width: 69.5%;padding-top: 10px;border-bottom:1px solid #EFEAEE;position: fixed;top:87px;right: 0px;background-color: #fff;}
+.classify-list-text1{width: 30%;text-align: center;border:1px solid #EFEFEF;font-size: 12px;height: 22px;line-height: 22px;
+margin-bottom: 10px;border-radius: 3px;float: left;margin-left: 2%;}
+.pitch-on-cl{color: #FF9201;border-color: #FF9201;}
+.classify-box1{width: 100%;float: left;height: 80px;border-bottom: 1px solid #EFEFEF;}
+.classify-box1-img1{width: 80px;height: 80px;float: left;text-align: center;}
+.classify-box1-img1 img{width: 60px;height: 60px;display: inline-block;margin-top: 10px;}
+.classify-box2{display: block;margin-left: 80px;height: 75px;margin-top: 5px;}
+.classify-box2-text1{width: 100%;float: left;height: 40px;line-height: 20px;font-size: 14px;overflow: hidden;}
+.classify-box2-text2{float: left;font-size: 14px;color: #FF9201;line-height: 30px;margin-top: 5px;}
+.shop-cart-box3{float: right;margin-top: 10px;margin-right: 5px;}
+.shop-cart-add{width: 20px;height: 20px;float: left;background: url(../images/add.png) no-repeat center center;background-size: 100%;}
+.shop-cart-numer{float: left;font-size: 14px;line-height: 20px;width: 20px;border: none;outline: none;text-align: center;}
+.shop-cart-subtract{width: 20px;height: 20px;float: left;background: url(../images/subtract.png) no-repeat center center;background-size: 100%;}

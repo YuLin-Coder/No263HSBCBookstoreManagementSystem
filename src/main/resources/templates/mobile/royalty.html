@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                   剩余佣金：<span style="color: red;" th:text="${all}" id="all"></span> <span class="btn btn-info" onclick="add()">提取佣金</span>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>金额</th>
+                            <th>描述</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="obj : ${list}">
+                                <td th:text="${#dates.format(obj.time, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                <td th:text="${obj.money}"></td>
+                                <td th:text="${obj.mark}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<!-- Page-Level Scripts -->
+<script>
+
+    function add() {
+        var all = Number($("#all").html());
+
+        layer.prompt({title: '请输入提取金额', formType: 3}, function(text, index){
+            if(all>Number(text)){
+                basePost({
+                    url:"/royalty/tiqu.do",
+                    data:{
+                        money:"-"+text,
+                    },
+                    success:function (obj) {
+                        layer.closeAll();
+                        layer.confirm('提取成功！', {
+                            title: '提示',
+                            btn: ['确定'], //按钮
+                            skin: 'layui-layer-molv',
+                            closeBtn: 0
+                        }, function(){
+                            window.location.reload();
+                        });
+                    }
+                })
+            }else{
+                layer.closeAll();
+                alert("提取金额不可超过拥有佣金")
+            }
+        });
+    }
+
+</script>
+
+</body>
+
+</html>

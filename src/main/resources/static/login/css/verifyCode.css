@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.input--verify_code {
+	float: left;
+	width: 60%
+}
+
+.verify-code-canvas {
+	width: 100px;
+	height: 43px;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	background-color: white;
+	top: 15px;
+	right: 10px;
+}
+
+

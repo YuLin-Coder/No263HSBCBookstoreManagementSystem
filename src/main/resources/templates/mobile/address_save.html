@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="/jqueryfresh/css/ydui.css" type="text/css"/>
+    <link rel="stylesheet" href="/jqueryfresh/css/demo.css" type="text/css"/>
+    <link href="/jqueryfresh/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/jqueryfresh/css/receiving-adress.css" rel="stylesheet" type="text/css">
+    <script src="/jqueryfresh/js/ydui.flexible.js"></script>
+    <title>保存收获地址</title>
+</head>
+<body>
+<div class="near-box">
+    <form method="get" class="form-horizontal" id="userFrom">
+        <div class="bigbox" style="margin-top: -30px;">
+            <div class="receiv-text1">地址信息</div>
+            <div class="receiv-box1"><input type="text" name="name" class="receiv-input1" placeholder="收货人姓名（请使用真实姓名）"></div>
+            <div class="receiv-box1"><input type="number" name="phone" class="receiv-input1" placeholder="手机号码"></div>
+            <div class="receiv-box2"><textarea name="address" class="receiv-input2" placeholder="详细地址"></textarea></div>
+            <button class="set-text1" type="button" onclick="submitpl()">保存</button>
+        </div>
+    </form>
+</div>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="/jqueryfresh/js/ydui.citys.js"></script>
+<script type="text/javascript" src="/jqueryfresh/js/ydui.js"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script type="text/javascript">
+    function submitpl() {
+        var data = {};
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            data [this.name] = this.value;
+        });
+        basePost({
+            url:"/customerAddress/saveData.do",
+            data:data,
+            success:function (req) {
+                window.parent.location.href="/customerAddress/list.do";
+            }
+        })
+    }
+</script>
+</body>
+</html>

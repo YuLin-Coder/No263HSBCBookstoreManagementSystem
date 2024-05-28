@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <title>角色授权</title>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div style="height: 402px;overflow: auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20px;"><input type="checkbox" onclick="authAll(this)"></th>
+                                    <th  colspan="2">菜单名称</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="obj : ${menuEntities}">
+                                <span th:if="${obj.type==1}">
+                                     <td  style="width: 20px;"></td>
+                                     <td  th:text="${obj.name}" colspan="2"></td>
+                                </span>
+                                <span th:if="${obj.type==2}">
+                                     <td  style="width: 20px;"></td>
+                                     <td  style="width: 20px;" >
+                                         <input type="checkbox" th:if="${obj.auth==false}" class="auth" th:value="${obj.id}">
+                                         <input type="checkbox" th:if="${obj.auth==true}" checked="true" class="auth" th:value="${obj.id}">
+
+                                     </td>
+                                     <td  th:text="${obj.name}" ></td>
+                                </span>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div  class="col-sm-12" style="text-align: center;margin-top: 15px;">
+                        <button class="btn btn-primary" type="button" onclick="sub()">保存权限</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<input type="hidden" id="roleId" th:value="${roleId}">
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Peity -->
+<script src="/js/plugins/peity/jquery.peity.min.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+    
+    function authAll(b) {
+        var ol = $(b).prop("checked");
+        if(ol){
+            $(".auth").prop("checked",true);
+        }else{
+            $(".auth").prop("checked",false);
+        }
+    }
+
+    function sub() {
+        var roleId = $("#roleId").val();
+        var ids = "";
+        var ckeckeds = $(".auth");
+        for (let i = 0; i < ckeckeds.length; i++) {
+            if(ckeckeds.eq(i).prop("checked") == true){
+                ids+=","+ckeckeds.eq(i).val();
+            }
+        }
+        ids = ids.replace(",","");
+        if(ids==""){
+            layer.alert("请选择至少一个菜单进行保存操作");
+            return false;
+        }
+
+        layer.confirm('确定需要保存菜单权限吗？', {
+            btn: ['确定','取消'], //按钮
+            skin: 'layui-layer-molv'
+        }, function(){
+            basePost({
+                url:"/role/authData.htm",
+                data:{
+                    roleId:roleId,
+                    ids:ids,
+                },
+                success:function (obj) {
+                    layer.closeAll();
+                    layer.confirm('保存成功！', {
+                        title: '提示',
+                        btn: ['确定'], //按钮
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    }, function(){
+                        window.parent.layer.closeAll();
+                    });
+                }
+            })
+        }, function(){
+        });
+    }
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <link href="/jqueryfresh/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/jqueryfresh/css/receiving-adress.css" rel="stylesheet" type="text/css">
+    <title>收货地址</title>
+</head>
+<body>
+<div class="near-box">
+    <div class="header">
+        <a  href="/mobileCustomer/info.do" class="left"></a>
+        收货地址
+    </div>
+    <div class="bigbox">
+        <div class="sh-adress-box1" th:each="obj : ${list}">
+            <a  class="sh-adress-box2">
+                <span class="sh-adress-text1" th:text="${obj.name}"></span>
+                <span class="sh-adress-text1 text-r" th:text="${obj.phone}">186****9865</span>
+                <span class="sh-adress-text2" th:text="${obj.address}"></span>
+            </a>
+            <div class="sh-adress-box3">
+                <div class="sh-adress-text4" onclick="del(this)" th:attr="aid=${obj.id}">删除</div>
+            </div>
+        </div>
+        <sapn onclick="add()" class="set-text1">添加新地址</sapn>
+    </div>
+
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/jeditable/jquery.jeditable.js"></script>
+<!-- Data Tables -->
+<script src="/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script type="text/javascript">
+    function add() {
+        layer.open({
+            type: 2,
+            title: "添加收货地址",
+            area: ['95%', "60%"],
+            skin: 'layui-layer-molv',
+            content: "/customerAddress/save.do",
+        });
+    }
+    function del(b) {
+        var id = $(b).attr("aid");
+        layer.confirm('确定删除？', {
+            btn: ['确定','取消'], //按钮
+            skin: 'layui-layer-molv'
+        }, function(){
+            basePost({
+                url:"/customerAddress/del.do",
+                data:{
+                    id:id,
+                },
+                success:function (obj) {
+                    window.location.reload();
+                }
+            })
+        }, function(){
+        });
+    }
+
+</script>
+</body>
+</html>

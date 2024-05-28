@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>个人中心界面</title>
+    <link rel="stylesheet" href="/res/layui/css/layui.css">
+    <link rel="stylesheet" href="/res/css/global.css">
+</head>
+<body>
+<div class="layui-container fly-marginTop fly-user-main">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+        <li class="layui-nav-item">
+            <a onclick="tiaozhuan('/shoppingGat/list.do')">
+                <i class="layui-icon">&#xe657;</i>
+                我的购物车
+            </a>
+        </li>
+        <li class="layui-nav-item">
+            <a onclick="tiaozhuan('/order/list.do')">
+                <i class="layui-icon">&#xe60a;</i>
+                订单管理
+            </a>
+        </li>
+        <li class="layui-nav-item">
+            <a onclick="tiaozhuan('/customerAddress/list.do')">
+                <i class="layui-icon">&#xe715;</i>
+                收货地址
+            </a>
+        </li>
+        <li class="layui-nav-item">
+            <a onclick="tiaozhuan('/mobileCustomer/myUpdate.do')">
+                <i class="layui-icon">&#xe60e;</i>
+                用户信息
+            </a>
+        </li>
+    </ul>
+    <div class="site-tree-mobile layui-hide">
+        <i class="layui-icon">&#xe602;</i>
+    </div>
+    <div class="site-mobile-shade"></div>
+
+    <div class="site-tree-mobile layui-hide">
+        <i class="layui-icon">&#xe602;</i>
+    </div>
+    <div class="site-mobile-shade"></div>
+
+    <div class="fly-panel fly-panel-user" pad20 style="width: 1000px;">
+        <iframe src="/shoppingGat/list.do" id="iframe" width="100%" height="600" frameborder="no" border="0">
+        </iframe>
+    </div>
+</div>
+
+<script src="/res/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/base.js"></script>
+<script>
+    layui.config({
+        version: "3.0.0"
+        , base: '/res/mods/' //这里实际使用时，建议改成绝对路径
+    }).extend({
+        fly: 'index'
+    }).use('fly');
+
+    function tiaozhuan(url) {
+        $("#iframe").attr("src", url)
+    }
+
+</script>
+
+
+</body>
+</html>

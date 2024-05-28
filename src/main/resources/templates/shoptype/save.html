@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <title>后台添加商品分类</title>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal" id="userFrom">
+                        <input type="hidden" th:value="${entity.id}" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" th:value="${entity.name}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="button" onclick="submitpl()">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<script src="/ js/content.js?v=1.0.0"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script>
+    selected();
+    function submitpl() {
+        var data = {};
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            data [this.name] = this.value;
+        });
+        basePost({
+            url:"/shoptype/saveData.htm",
+            data:data,
+            success:function (req) {
+                layer.closeAll();
+                layer.confirm('保存成功！', {
+                    title: '提示',
+                    btn: ['确定'], //按钮
+                    skin: 'layui-layer-molv',
+                    closeBtn: 0
+                }, function(){
+                    window.parent.location.reload();
+                    window.parent.layer.closeAll();
+                });
+            }
+        })
+
+    }
+
+</script>
+
+</body>
+
+</html>

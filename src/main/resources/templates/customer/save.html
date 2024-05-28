@@ -1,0 +1,95 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <title>后台添加用户</title>
+</head>
+<style>
+    .layui-form-item{
+        margin-bottom: 8px;
+    }
+</style>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div id="cardBodyDiv" class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form layui-form-pane" action="" lay-filter="component-form-group">
+                <input type="hidden" name="id" th:value="${entity.id}"/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" lay-verify="title" th:value="${entity.name}" readonly  maxlength="50" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">认证标签</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="authName" lay-verify="title" th:value="${entity.authName}"  maxlength="50" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">认证状态</label>
+                        <div class="layui-input-inline">
+                            <select name="authStatus" class="selectedlv" th:attr="v=${entity.authStatus}">
+                                <option value="0">未认证</option>
+                                <option value="1">申请认证</option>
+                                <option value="2">认证通过</option>
+                                <option value="3">认证拒绝</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <a class="layui-btn" lay-submit="" lay-filter="component-form-demo1">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/base.js"></script>
+<script>
+    selected();
+    //设置富文本
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate','upload'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+        form.render(null, 'component-form-group');
+        laydate.render({
+            elem: '#LAY-component-form-group-date'
+        });
+
+        /* 监听提交 */
+        form.on('submit(component-form-demo1)', function(data){
+            var da = data.field;
+            basePost({
+                url:"/customer/saveData.htm",
+                data:da,
+                success:function (req) {
+                    window.parent.location.reload();
+                }
+            })
+            return false;
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

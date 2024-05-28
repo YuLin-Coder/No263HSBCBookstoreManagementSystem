@@ -1,0 +1,168 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/select/formSelects-v4.css"/>
+    <title>添加公告</title>
+</head>
+<style>
+    .layui-form-item {
+        margin-bottom: 8px;
+    }
+</style>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div id="cardBodyDiv" class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form layui-form-pane" action="" lay-filter="component-form-group">
+                <input type="hidden" th:value="${list.id}" name="id">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="title" maxlength="30" autocomplete="off"
+                               class="layui-input" th:value="${list.title}" required>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">类型</label>
+                        <div class="layui-input-inline">
+                            <select name="typeId" lay-verify="required" lay-search="" id="typeIdList">
+                                <option th:each="type : ${types}" th:value="${type.id}"
+                                        th:text="${type.typeName}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">作者</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="userName" lay-verify="userName" maxlength="30" autocomplete="off"
+                               class="layui-input" th:value="${list.userName}" required>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容</label>
+                    <div class="layui-input-block">
+                        <div id="editor" style="height:200px;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <a class="layui-btn" lay-submit="" lay-filter="component-form-demo1">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="mContent" style="display: none" th:utext="${list.content}">
+
+</div>
+
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/select/formSelects-v4.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/base.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/addUploadImg.js"></script>
+<script>
+    selected();
+    //设置富文本
+    var ue = UE.getEditor('editor');
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate', 'upload'], function () {
+        var $ = layui.$
+            , admin = layui.admin
+            , element = layui.element
+            , layer = layui.layer
+            , laydate = layui.laydate
+            , form = layui.form;
+        var formSelects = layui.formSelects;
+        form.render(null, 'component-form-group');
+        laydate.render({
+            elem: '#LAY-component-form-group-date'
+        });
+        uploadOneImg('#mobileTest1', 'information', function (res) {
+            if (res.code == 200) {
+                //上传完毕回调
+                $("#mobileCover").val(res.data);
+                $("#mobileCoverImg").attr("src", res.data);
+            } else {
+                layer.alert(res.msg, {icon: 2, skin: 'layui-layer-molv'})
+            }
+        }, 670, 460);
+        list(true);
+        ue.setContent($("#mContent").html());
+
+        function list(b) {
+            basePost({
+                url: "/appointment_type/typeList.htm",
+                success: function (req) {
+                    if (req) {
+                        $("#childType").html("");
+                        for (let i = 0; i < req.length; i++) {
+                            $("#typeIdList").append('<option value="' + req[i].id + '">' + req[i].typeName + '</option>');
+                        }
+                        form.render(null);
+                    }
+                }
+            });
+
+        }
+
+        /* 监听提交 */
+        form.on('submit(component-form-demo1)', function (data) {
+            if (ue.getContent() == null || ue.getContent() == "") {
+                layer.alert("请输入内容")
+                return false;
+            }
+            var da = data.field;
+            da.content = ue.getContent();
+            da.cover = $("#mobileCoverImg").attr("src");
+            console.log(da)
+
+
+            layer.confirm('确定保存信息？', {
+                btn: ['确定', '取消'], //按钮
+                skin: 'layui-layer-molv'
+            }, function () {
+                basePost({
+                    url: "/appointment/save",
+                    data: da,
+                    success: function (req) {
+                        layer.confirm('保存成功！', {
+                            title: '提示',
+                            btn: ['确定'], //按钮
+                            skin: 'layui-layer-molv',
+                            closeBtn: 0
+                        }, function () {
+                            window.parent.location.reload();
+                        });
+                    }
+                })
+            }, function () {
+            });
+            return false;
+        });
+    });
+
+</script>
+
+</body>
+
+</html>
+

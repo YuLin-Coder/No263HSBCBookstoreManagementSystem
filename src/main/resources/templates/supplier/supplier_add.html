@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <title>添加供应商</title>
+</head>
+<style>
+    .layui-form-item {
+        margin-bottom: 8px;
+    }
+</style>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div id="cardBodyDiv" class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form layui-form-pane" action="" lay-filter="component-form-group">
+                <input type="hidden" th:value="${list.id}" name="id">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">供应商名称</label>
+                    <div class="layui-input-block">
+                        <input id="name" type="text" name="name"
+                               lay-verify="name" maxlength="20" autocomplete="off" placeholder="请输入"
+                               class="layui-input" th:value="${list.name}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">供应商地址</label>
+                    <div class="layui-input-block">
+                        <input id="address" type="text" name="address"
+                               lay-verify="address" maxlength="20" autocomplete="off" placeholder="请输入"
+                               class="layui-input" th:value="${list.address}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">供应商联系方式</label>
+                    <div class="layui-input-block">
+                        <input id="phone" type="text" name="phone"
+                               lay-verify="phone" maxlength="20" autocomplete="off" placeholder="请输入"
+                               class="layui-input" th:value="${list.phone}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">供应商负责人</label>
+                    <div class="layui-input-block">
+                        <input id="headName" type="text" name="headName"
+                               lay-verify="headName" maxlength="20" autocomplete="off" placeholder="请输入"
+                               class="layui-input" th:value="${list.headName}">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <a class="layui-btn" lay-submit="" lay-filter="component-form-demo1">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/base.js"></script>
+
+<script>
+    selected();
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function () {
+        var $ = layui.$
+            , admin = layui.admin
+            , element = layui.element
+            , layer = layui.layer
+            , laydate = layui.laydate
+            , form = layui.form;
+        form.render(null, 'component-form-group');
+        laydate.render({
+            elem: '#LAY-component-form-group-date'
+        });
+        /* 监听提交 */
+        form.on('submit(component-form-demo1)', function (data) {
+            var da = data.field;
+            layer.confirm('确定保存信息？', {
+                btn: ['确定', '取消'], //按钮
+                skin: 'layui-layer-molv'
+            }, function () {
+                basePost({
+                    url: "/yx_supplier/save.htm",
+                    data: da,
+                    success: function (req) {
+                        layer.confirm('保存成功！', {
+                            title: '提示',
+                            btn: ['确定'], //按钮
+                            skin: 'layui-layer-molv',
+                            closeBtn: 0
+                        }, function () {
+                            window.parent.layer.closeAll();
+                            window.parent.location.reload();
+                        });
+                    }
+                })
+            }, function () {
+            });
+            return false;
+        });
+    });
+
+</script>
+
+</body>
+
+</html>
+

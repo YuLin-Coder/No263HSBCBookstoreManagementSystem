@@ -1,0 +1,55 @@
+body{background: #F7F7F7;}
+.jd-qrdd-topbox{width: 100%;position: fixed;top: 0px;left: 0px;padding: 13px 0px;height: 18px;font-size: 16px;text-align: center;z-index: 666;
+background:url(../images/arrow-left.png) no-repeat 10px center #FFFFFF;background-size: 6%;border-bottom:1px solid #F4F4F4;}
+.qrdd-topbox-t1{display: block;text-align: center;}
+.qrdd-topbox-t2{position: fixed;font-size: 16px;z-index: 777;right: 10px;top: 13px;}
+.jd-qrdd-bigbox{width: 100%;float: left;margin-bottom: 10px;margin-top: 45px;}
+.jd-qrdd-a1{width: 100%;float: left;position: relative;background-color: #FFFFFF;padding: 15px 0px 0px 0px;margin-bottom: 10px;}
+.qrdd-a1-img2{width: 100%;height: 2px;position: absolute;bottom: 0px;left: 0px;background: url(../images/jd-qrdd-img1.png);background-size: 28%;}
+.qrdd-a1-t1{font-size: 14px;float: left;margin-left: 6%;font-weight: 600;}
+.qrdd-a1-t2{float: left;font-size: 12px;padding: 2px 4px 1px 4px;background-color: #FF9201;color: #FFFFFF;margin-left: 3%;margin-top: -2px;}
+.qrdd-a1-img1{width: 11px;height: 16px;float: left;background: url(../images/jd-xq-img1.png) no-repeat;background-size: 100%;}
+.qrdd-a1-b1{width: 95%;float: left;padding: 10px 3% 10px 2%;}
+.qrdd-a1-t3{width: 95%;float: left;margin-left: 1%;line-height: 18px;font-size: 12px;margin-top: -3px;}
+/*订单状态*/
+.indent-details-box{width: 94%;float: left;height:100px;padding: 15px 3%;background: url(../images/arrow-right2.png) no-repeat 97% center #636572;background-size: 6%;
+margin-bottom: 10px;}
+.indent-details-img1{width: 20px;height: 20px;float: left;background: url(../images/indent33.png) no-repeat center center;background-size: 100%;}
+.indent-details-text1{float: left;font-size: 15px;color: #FBFEFF;margin-left: 10px;}
+.indent-details-text2{width: 85%;float: left;margin-top: 10px;height: 44px;line-height: 22px;color: #FBFEFF;padding:0px 5% 0px 10%;font-size: 14px;overflow: hidden;}
+.indent-details-text3{float: left;font-size: 12px;color: #B0B2BF;margin: 10px 0px 0px 10%;}
+/*甜甜商品部分*/
+.zjzz-buylist-goods1{margin-bottom: 10px;}
+.zjzz-buylist-allact {float: left;width: 90%;padding-left: 10%;line-height: 40px;font-size: 14px;margin-top: 10px;
+background: url(../images/gonga.png) no-repeat 3% center #FFFFFF;background-size: 5%;}
+.zjzz-buylist-gtime {float: left;width: 100%;font-size: 14px;line-height: 35px;border-bottom: 1px solid #D4D4D4;}
+.zjzz-buylist-gtime1 {float: left;}
+.zjzz-buylist-gtime2 {float: right;color: #FF9201;}
+.zjzz-buylist-gtit1 {float: left;width: 67%;font-size: 14px;line-height: 20px;margin-top: 10px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:2;
+overflow: hidden;}
+.zjzz-buylist-gmoney {float: right;text-align: right;line-height: 20px;margin-top: 10px;}
+.zjzz-buylist-gm1,
+.zjzz-buylist-gm2 {float: left;width: 100%;font-size: 14px;height: 20px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.zjzz-buylist-gm2{color: #B1B1B1;}
+.zjzz-buylist-det{float: left;width: 100%;padding: 10px 0;}
+.zjzz-buylist-btn3 {color: #FFFFFF;background: #FF9201;border: 1px solid #FF9201;}
+.zjzz-buylist-shm{float: right;width: 100%;text-align: right;line-height: 25px;color: #ED889A;font-size: 14px;}
+.zjzz-buylist-shm img{vertical-align: middle;float: none !important;margin-top: -3px;width: 22px !important;height: 22px !important;}
+.zjzz-buylist-btn {float: left;width: 100%;margin-bottom: 10px;}
+.zjzz-buylist-btn a {float: right;width: 85px;font-size: 14px;text-align: center;line-height: 25px;border-radius: 3px;}
+.zjzz-buylist-btn1 {color: #393939;margin-right: 15px;border: 1px solid #CDCDCD;}
+.zjzz-buylist-btn2 {color: #BE2543;border: 1px solid #BE2543;}
+.zjzz-buylist-goods1 {float: left;width: 94%;padding: 5px 3% 0 3%;background: #FFFFFF;border-bottom: 1px solid #F6F6F6;}
+.zjzz-buylist-goods1 img {float: left;width: 75px;height: 75px;}
+.zjzz-buylist-gdetail {display: block;margin-left: 80px;}
+.indent-details-img2{width: 20px;height: 20px;float: left;background: url(../images/shop.png) no-repeat center center;background-size: 100%;margin-top: 8px;
+margin-right: 3px;}
+/*商品金额部分*/
+.indent-details-box2{width: 94%;float:left;height: 35px;line-height: 35px;border-bottom: 1px solid #F8F8F8;padding: 0px 3%;background: #fff;}
+.indent-details-text4{float: left;font-size: 14px;}
+.indent-details-text5{float: right;font-size: 14px;color: #FF9201;}
+.tcolor-grey{color: #979797;}
+.tcolor-black{color: #494949;}
+.indent-details-box3{width: 94%;float: left;padding: 15px 3%;background: #fff;margin-top: 10px;line-height: 22px;font-size: 14px;}
+.indent-details-box3 p{height: 25px;color: #494949;}
+

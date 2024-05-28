@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/layuiMall/res/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/layuiMall/res/layui/css/layui.css">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
+    <link href="/spop-gh-pages/dist/spop.min.css" rel="stylesheet"/>
+    <link href="/spop-gh-pages/src/styles.min.css" rel="stylesheet"/>
+    <title>商品详情页面</title>
+</head>
+<body>
+
+<div class="content content-nav-base datails-content" style="background-color: white;">
+    <div class="data-cont-wrap w1200">
+        <div class="crumb">
+            <a href="/mobile/index.html">首页</a>
+            <span>></span>
+            <a href="/mobile/index.html">所有商品</a>
+            <span>></span>
+            <a href="javascript:history.go(-1)">返回上一页</a>
+        </div>
+        <div class="product-intro layui-clear">
+            <div class="preview-wrap">
+                <a href="javascript:;"><img th:src="${shop.cover}" style="height:350px;width: 90%;"/></a>
+            </div>
+            <div class="itemInfo-wrap">
+                <div class="itemInfo">
+                    <div class="title">
+                        <h4 th:text="${shop.name}"></h4>
+                        <h6 th:text="${shop.summery}"></h6>
+                    </div>
+                    <div class="summary" style="height: 200px;">
+                        <p class="reference"><span>参考价</span>
+                            <del>￥<span th:text="${shop.price}"></span></del>
+                        </p>
+                        <p class="activity"><span>活动价</span><strong class="price"><i>￥</i><span
+                                th:text="${shop.discountPrice}"></span></strong></p>
+                        <p class="address-box"><i>评分： </i> <span th:text="${shop.score}"></span></p>
+                        <p class="address-box"><i>库存： </i> <span th:text="${shop.stock}"></span></p>
+                    </div>
+                    <div class="choose-btns">
+                        <span class="layui-btn  layui-btn-danger car-btn" onclick="addGat(this)"
+                              th:attr="shopid=${shop.id}"><i class="layui-icon layui-icon-cart-simple"></i>加入购物车</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">商品详情</li>
+                <li>客户评价</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show" th:utext="${shop.content}">内容1</div>
+                <div class="layui-tab-item ">
+                    <div class="layui-nav-item" th:each="comment : ${list}">
+                        <a class="fly-nav-avatar" href="javascript:;">
+                            <img th:src="${comment.header}" style="width: 50px;height: 50px;">
+                            <cite class="layui-hide-xs" th:src="${comment.cname}">匿名用户评价</cite>
+                            <span th:if="${comment.score == 5}">★★★★★</span>
+                            <span th:if="${comment.score == 4}">★★★★</span>
+                            <span th:if="${comment.score == 3}">★★★</span>
+                            <span th:if="${comment.score == 2}">★★</span>
+                            <span th:if="${comment.score == 1}">★</span>
+                        </a>
+                        <p th:text="${comment.content}" style="margin-top: 2px;padding: 5px;"></p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="id" th:value="${id}">
+<input type="hidden" id="customerId" th:value="${customerId}">
+<script src="/layuiadmin/layui/layui.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/layer/layer.js"></script>
+<script src="/base.js"></script>
+<script src="/spop-gh-pages/src/prism.js"></script>
+<script src="/spop-gh-pages/dist/spop.min.js"></script>
+<script src="/spop-gh-pages/src/scripts.min.js"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'element'], function () {
+        var $ = layui.$
+            , fly = layui.fly;
+    });
+    $(function () {
+        basePost({
+            url: "/mobileShop/aList.html",
+            data: {
+                id: $("#id").val(),
+            },
+            success: function (req) {
+                if (req) {
+                    for (var i = 0; i < req.length; i++) {
+                        spop({
+                            template: '<a href="/article/info.html?id=' + req[i].id + '">' + req[i].title + '</a>',
+                            style: 'success',
+                            position: 'bottom-right',
+                            // autoclose: 3000
+                        });
+                    }
+                }
+            }
+        })
+    })
+
+    /**
+     *
+     * @param shopId
+     */
+    function addGat(b) {
+        var shopId = $(b).attr("shopid");
+        basePost({
+            url: "/shoppingGat/add.do",
+            data: {
+                shopId: shopId,
+                num: 1,
+                customerId: $("#customerId").val()
+            },
+            success: function (req) {
+                console.log(req, 111)
+                spop({
+                    template: '加入购物车成功',
+                    style: 'success',
+                    position: 'top-center',
+                    autoclose: 1000
+                });
+                layui.layer.msg("加入购物车成功");
+            },
+            error: function (res) {
+                alert("您需要登陆。");
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

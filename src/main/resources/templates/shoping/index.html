@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>汇丰书店</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/res/layui/css/layui.css">
+    <link rel="stylesheet" href="/res/css/global.css">
+</head>
+<body>
+
+<div class="fly-header layui-bg-black">
+    <div class="layui-container">
+        <a class="fly-logo" style="margin-left: -20px" href="/">
+            <p style="font-size: 30px;color: white;">汇丰书店</p>
+        </a>
+        <ul class="layui-nav fly-nav layui-hide-xs">
+            <li class="layui-nav-item tabli layui-this" onclick="tiaozhuan(this,'/mobile/index.html')">
+                <a hrefx="/"><i class="iconfont icon-iconmingxinganli"></i>商城</a>
+            </li>
+
+            <li class="layui-nav-item tabli" onclick="tiaozhuan(this,'/app_mobile/list')">
+                <a hrefx="/"><i class="iconfont icon-shijian"></i>公告</a>
+            </li>
+            <li class="layui-nav-item tabli"  th:if="${loginFlag==true}" onclick="tiaozhuan(this,'/mobileCustomer/info.do')">
+                <a  hrefx=""><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a>
+            </li>
+        </ul>
+        <ul class="layui-nav fly-nav-user">
+            <!-- 未登入的状态 -->
+            <li class="layui-nav-item" th:if="${loginFlag==false}">
+                <a class="iconfont icon-touxiang layui-hide-xs" onclick="login()"></a>
+            </li>
+            <li class="layui-nav-item" th:if="${loginFlag==false}">
+                <a  onclick="login()">登入</a>
+            </li>
+            <li class="layui-nav-item" th:if="${loginFlag==false}">
+                <a  onclick="reg()">注册</a>
+            </li>
+            <!-- 登入后的状态 -->
+            <li class="layui-nav-item" th:if="${loginFlag==true}">
+              <a class="fly-nav-avatar" href="javascript:;">
+                <cite class="layui-hide-xs" th:text="${loginCustomer.name}"></cite>
+                <i class="iconfont icon-renzheng layui-hide-xs" th:if="${loginCustomer.type==2}" ></i>
+                <i class="layui-badge fly-badge-vip layui-hide-xs" th:if="${loginCustomer.type==2}"  th:text="${loginCustomer.authName}">主播主播主笔</i>
+                <img th:src="${loginCustomer.header}">
+              </a>
+              <dl class="layui-nav-child">
+                <hr style="margin: 5px 0;">
+                <dd><a onclick="logOut()" style="text-align: center;">退出</a></dd>
+              </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+<div style="height: 500px;overflow:hidden;" id="content">
+    <iframe src="/mobile/index.html" frameborder="0" style="border: 0px; width: 100%; height: 100%;overflow:auto;" id="iframe"></iframe>
+</div>
+<script src="/res/layui/layui.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/base.js"></script>
+<script>
+    layui.config({
+        version: "3.0.0"
+        ,base: '/res/mods/' //这里实际使用时，建议改成绝对路径
+    }).extend({
+        fly: 'index'
+    }).use('fly');
+    $("#content").height($(window).height()-70);
+    function  login() {
+        // window.location("/mobileCustomer/login.html");
+        //iframe层
+        layer.open({
+            type: 2,
+            title: '登陆/注册',
+            shade: 0.8,
+            area: ['500px', '600px'],
+            content: '/mobileCustomer/login.html' //iframe的url
+        });
+    }
+    function  reg() {
+        //iframe层
+        layer.open({
+            type: 2,
+            title: '登陆/注册',
+            shade: 0.8,
+            area: ['500px', '600px'],
+            content: '/mobileCustomer/reg.html' //iframe的url
+        });
+    }
+
+    /**
+     * 退出登陆
+     */
+    function logOut() {
+        basePost({
+            url:"/mobileCustomer/logOut.do",
+            success:function (data) {
+               location.reload();
+            }
+        })
+    }
+
+    function tiaozhuan(b,url) {
+        $(".tabli").removeClass("layui-this");
+        $(b).addClass("tabli");
+        if(url!=$("#iframe").attr("src")){
+            $("#iframe").attr("src",url);
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
